@@ -1,248 +1,608 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kcodingworld - Learn AI & Coding</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kcodingworld</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
 
-    body {
-      background: #f4f7fb;
-      color: #172033;
-    }
+body{
+  background:#f4f7fb;
+  color:#172033;
+}
 
-    header {
-      background: #111827;
-      color: white;
-      padding: 18px;
-      text-align: center;
-    }
+header{
+  background:#111827;
+  color:white;
+  text-align:center;
+  padding:22px 15px;
+}
 
-    header h1 {
-      font-size: 28px;
-    }
+header h1{font-size:30px}
+header p{margin-top:6px;color:#cbd5e1}
 
-    header p {
-      margin-top: 6px;
-      color: #cbd5e1;
-    }
+.container{
+  max-width:950px;
+  margin:auto;
+  padding:20px;
+}
 
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 20px;
-    }
+.box{
+  background:white;
+  padding:22px;
+  border-radius:18px;
+  margin-bottom:20px;
+  box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
 
-    .welcome {
-      background: white;
-      padding: 25px;
-      border-radius: 18px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    }
+input{
+  width:100%;
+  padding:13px;
+  margin:7px 0;
+  border:1px solid #d1d5db;
+  border-radius:10px;
+  font-size:16px;
+}
 
-    .welcome h2 {
-      margin-bottom: 10px;
-    }
+button{
+  border:0;
+  border-radius:10px;
+  padding:13px 18px;
+  background:#2563eb;
+  color:white;
+  font-weight:bold;
+  font-size:15px;
+  cursor:pointer;
+  margin:5px;
+}
 
-    input {
-      width: 100%;
-      padding: 13px;
-      margin: 8px 0;
-      border: 1px solid #d1d5db;
-      border-radius: 10px;
-      font-size: 16px;
-    }
+button:hover{background:#1d4ed8}
 
-    button {
-      width: 100%;
-      padding: 14px;
-      margin-top: 10px;
-      border: none;
-      border-radius: 10px;
-      background: #2563eb;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+.secondary{background:#475569}
+.green{background:#16a34a}
 
-    button:hover {
-      background: #1d4ed8;
-    }
+#dashboard,#learning,#quizPage,#notesPage{display:none}
 
-    #dashboard {
-      display: none;
-    }
+.student{
+  background:#2563eb;
+  color:white;
+  padding:20px;
+  border-radius:16px;
+  margin-bottom:20px;
+}
 
-    .student-info {
-      background: #2563eb;
-      color: white;
-      padding: 20px;
-      border-radius: 16px;
-      margin-bottom: 20px;
-    }
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:15px;
+}
 
-    .student-info p {
-      margin-top: 6px;
-    }
+.card{
+  background:white;
+  padding:22px;
+  border-radius:16px;
+  box-shadow:0 4px 15px rgba(0,0,0,.07);
+  cursor:pointer;
+  transition:.2s;
+}
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 15px;
-    }
+.card:hover{transform:translateY(-3px)}
 
-    .card {
-      background: white;
-      padding: 22px;
-      border-radius: 16px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.07);
-      cursor: pointer;
-      transition: 0.2s;
-    }
+.card h3{margin-bottom:8px}
+.card p{color:#64748b;line-height:1.4}
 
-    .card:hover {
-      transform: translateY(-3px);
-    }
+.level{
+  border:1px solid #e2e8f0;
+  border-radius:14px;
+  padding:18px;
+  margin:12px 0;
+  background:#f8fafc;
+}
 
-    .card h3 {
-      margin-bottom: 8px;
-    }
+.question{
+  font-size:19px;
+  font-weight:bold;
+  margin:15px 0;
+}
 
-    .card p {
-      color: #64748b;
-      line-height: 1.4;
-    }
+.option{
+  display:block;
+  width:100%;
+  text-align:left;
+  background:#e2e8f0;
+  color:#172033;
+  margin:8px 0;
+}
 
-    footer {
-      text-align: center;
-      padding: 30px;
-      color: #64748b;
-    }
+.option:hover{background:#cbd5e1}
 
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 24px;
-      }
+#result{
+  font-size:20px;
+  font-weight:bold;
+  padding:15px;
+}
 
-      .container {
-        padding: 14px;
-      }
-    }
-  </style>
+.progressbar{
+  width:100%;
+  height:18px;
+  background:#e2e8f0;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.progressfill{
+  height:100%;
+  width:0%;
+  background:#16a34a;
+}
+
+footer{
+  text-align:center;
+  padding:30px;
+  color:#64748b;
+}
+
+@media(max-width:600px){
+  .container{padding:12px}
+  header h1{font-size:25px}
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <h1>🚀 KCodingworld</h1>
-    <p>Learn • Play • Code • Grow</p>
-  </header>
+<header>
+<h1>🚀 KCodingworld</h1>
+<p>Learn • Play • Code • Grow</p>
+</header>
 
-  <main class="container">
+<div class="container">
 
-    <!-- Student Form -->
-    <section class="welcome" id="studentForm">
-      <h2>👋 Welcome to KCodingworld</h2>
-      <p style="margin-bottom:15px;">
-        Start your coding journey!
-      </p>
+<!-- START -->
+<section class="box" id="studentForm">
+<h2>👋 Welcome to KCodingworld</h2>
+<p style="margin:10px 0 15px">
+Start your coding journey!
+</p>
 
-      <input
-        type="text"
-        id="studentName"
-        placeholder="Enter your name"
-      >
+<input id="studentName" placeholder="Enter your name">
+<input id="studentClass" placeholder="Enter your present class">
+<input id="studentCourse" placeholder="Enter your course">
 
-      <input
-        type="text"
-        id="studentClass"
-        placeholder="Enter your present class"
-      >
-
-      <input
-        type="text"
-        id="studentCourse"
-        placeholder="Enter your course"
-      >
-
-      <button onclick="startLearning()">
-        🚀 Start Learning
-      </button>
-    </section>
+<button onclick="startLearning()">🚀 Start Learning</button>
+</section>
 
 
-    <!-- Dashboard -->
-    <section id="dashboard">
+<!-- DASHBOARD -->
+<section id="dashboard">
 
-      <div class="student-info">
-        <h2>👋 Hello, <span id="showName"></span>!</h2>
-        <p>📚 Class: <span id="showClass"></span></p>
-        <p>🎓 Course: <span id="showCourse"></span></p>
-      </div>
+<div class="student">
+<h2>Hello, <span id="showName"></span> 👋</h2>
+<p>Class: <span id="showClass"></span></p>
+<p>Course: <span id="showCourse"></span></p>
+</div>
+
+<div class="grid">
+
+<div class="card" onclick="showNotes()">
+<h3>📚 B.Tech AI/ML Notes</h3>
+<p>Subjects, concepts and study material.</p>
+</div>
+
+<div class="card" onclick="startGame('C')">
+<h3>💻 Learn C</h3>
+<p>Learn C through levels and questions.</p>
+</div>
+
+<div class="card" onclick="startGame('C++')">
+<h3>⚡ Learn C++</h3>
+<p>Learn C++ basics and programming.</p>
+</div>
+
+<div class="card" onclick="startGame('Python')">
+<h3>🐍 Learn Python</h3>
+<p>Learn Python with simple challenges.</p>
+</div>
+
+<div class="card" onclick="startQuiz()">
+<h3>🧠 Coding Quiz</h3>
+<p>Test your programming knowledge.</p>
+</div>
+
+<div class="card" onclick="showProgress()">
+<h3>📊 My Progress</h3>
+<p>See your learning progress.</p>
+</div>
+
+</div>
+</section>
 
 
-      <div class="grid">
+<!-- LEARNING -->
+<section class="box" id="learning">
 
-        <div class="card" onclick="comingSoon('Notes')">
-          <h3>📚 B.Tech AI/ML Notes</h3>
-          <p>
-            AI/ML subjects ke notes, important topics
-            aur study material.
-          </p>
-        </div>
+<h2 id="gameTitle">🎮 Learning Game</h2>
 
-        <div class="card" onclick="comingSoon('C Programming')">
-          <h3>💻 Learn C</h3>
-          <p>
-            C programming ko game aur levels ke through
-            seekho.
-          </p>
-        </div>
+<div id="lesson"></div>
 
-        <div class="card" onclick="comingSoon('C++ Programming')">
-          <h3>⚡ Learn C++</h3>
-          <p>
-            C++ basics, OOP aur coding challenges.
-          </p>
-        </div>
+<button class="secondary" onclick="goHome()">⬅ Back Home</button>
 
-        <div class="card" onclick="comingSoon('Python')">
-          <h3>🐍 Learn Python</h3>
-          <p>
-            Python basics se advanced concepts tak
-            game-based learning.
-          </p>
-        </div>
+</section>
 
-        <div class="card" onclick="comingSoon('Quiz')">
-          <h3>🧠 Coding Quizzes</h3>
-          <p>
-            C, C++, Python aur AI/ML ke MCQ quizzes.
-          </p>
-        </div>
 
-        <div class="card" onclick="comingSoon('Progress')">
-          <h3>📊 My Progress</h3>
-          <p>
-            Apni learning progress aur quiz scores dekho.
-          </p>
-        </div>
+<!-- QUIZ -->
+<section class="box" id="quizPage">
 
-      </div>
+<h2>🧠 Coding Quiz</h2>
 
-    </section>
+<div id="quiz"></div>
 
-  </main>
+<div id="result"></div>
 
-  <footer>
-    © 2026 KCodingworld | Made for Students 🚀
-  </
+<button class="secondary" onclick="goHome()">⬅ Back Home</button>
+
+</section>
+
+
+<!-- NOTES -->
+<section class="box" id="notesPage">
+
+<h2>📚 B.Tech AI/ML Notes</h2>
+
+<div class="level">
+<h3>🤖 Artificial Intelligence</h3>
+<p>AI is the field of computer science focused on creating systems that can perform tasks requiring human-like intelligence.</p>
+</div>
+
+<div class="level">
+<h3>🧠 Machine Learning</h3>
+<p>Machine Learning allows computers to learn patterns from data and make predictions or decisions.</p>
+</div>
+
+<div class="level">
+<h3>📊 Data Science</h3>
+<p>Data Science combines programming, statistics and machine learning to extract useful information from data.</p>
+</div>
+
+<div class="level">
+<h3>🐍 Python</h3>
+<p>Python is widely used in AI, ML, data science and automation.</p>
+</div>
+
+<div class="level">
+<h3>💻 Programming Fundamentals</h3>
+<p>Important concepts include variables, data types, conditions, loops, functions and arrays.</p>
+</div>
+
+<button class="secondary" onclick="goHome()">⬅ Back Home</button>
+
+</section>
+
+
+<!-- PROGRESS -->
+<section class="box" id="progressPage" style="display:none">
+
+<h2>📊 My Progress</h2>
+
+<p style="margin:15px 0">
+Learning progress:
+</p>
+
+<div class="progressbar">
+<div class="progressfill" id="progressFill"></div>
+</div>
+
+<p id="progressText" style="margin-top:10px"></p>
+
+<button class="secondary" onclick="goHome()">⬅ Back Home</button>
+
+</section>
+
+</div>
+
+<footer>
+© 2026 KCodingworld | Made for Students 🚀
+</footer>
+
+
+<script>
+
+let progress = Number(localStorage.getItem("progress") || 0);
+
+const games = {
+
+"C":[
+"Q1: C language mein variable declare karne ke liye kya use hota hai?",
+"Q2: C mein integer data type ka naam kya hai?",
+"Q3: C mein condition check karne ke liye kya use hota hai?"
+],
+
+"C++":[
+"Q1: C++ ka main feature kya hai?",
+"Q2: C++ mein class banane ke liye kya keyword use hota hai?",
+"Q3: C++ kis programming language ka extension hai?"
+],
+
+"Python":[
+"Q1: Python mein output dikhane ke liye kya use hota hai?",
+"Q2: Python mein list kis brackets mein likhi jaati hai?",
+"Q3: Python kis type ki language hai?"
+]
+
+};
+
+function startLearning(){
+
+let name=document.getElementById("studentName").value.trim();
+let cls=document.getElementById("studentClass").value.trim();
+let course=document.getElementById("studentCourse").value.trim();
+
+if(!name||!cls||!course){
+alert("Please Name, Present Class aur Course fill karo.");
+return;
+}
+
+localStorage.setItem("studentName",name);
+localStorage.setItem("studentClass",cls);
+localStorage.setItem("studentCourse",course);
+
+loadStudent();
+}
+
+
+function loadStudent(){
+
+let name=localStorage.getItem("studentName");
+let cls=localStorage.getItem("studentClass");
+let course=localStorage.getItem("studentCourse");
+
+if(name&&cls&&course){
+
+document.getElementById("showName").textContent=name;
+document.getElementById("showClass").textContent=cls;
+document.getElementById("showCourse").textContent=course;
+
+document.getElementById("studentForm").style.display="none";
+document.getElementById("dashboard").style.display="block";
+}
+
+updateProgress();
+}
+
+
+function startGame(language){
+
+hideAll();
+
+document.getElementById("learning").style.display="block";
+
+document.getElementById("gameTitle").textContent=
+"🎮 Learn "+language;
+
+let questions=games[language];
+
+let html="";
+
+questions.forEach((q,i)=>{
+
+html+=`
+<div class="level">
+<h3>Level ${i+1}</h3>
+<p class="question">${q}</p>
+<p>Think about the answer and then check your knowledge in the quiz!</p>
+<button onclick="completeLevel()">✅ Complete Level</button>
+</div>
+`;
+
+});
+
+document.getElementById("lesson").innerHTML=html;
+}
+
+
+function completeLevel(){
+
+progress=Math.min(progress+10,100);
+
+localStorage.setItem("progress",progress);
+
+alert("🎉 Level completed!");
+
+updateProgress();
+}
+
+
+const quizQuestions=[
+
+{
+q:"Python mein output print karne ke liye kya use hota hai?",
+options:["print()","display()","show()","output()"],
+answer:0
+},
+
+{
+q:"C language mein integer ke liye kaunsa data type use hota hai?",
+options:["float","int","char","string"],
+answer:1
+},
+
+{
+q:"C++ mein class declare karne ke liye kya keyword use hota hai?",
+options:["object","class","structs","define"],
+answer:1
+},
+
+{
+q:"AI ka full form kya hai?",
+options:[
+"Automatic Internet",
+"Artificial Intelligence",
+"Advanced Information",
+"Artificial Internet"
+],
+answer:1
+},
+
+{
+q:"Machine Learning ka main purpose kya hai?",
+options:[
+"Computer ko data se patterns learn karwana",
+"Computer ko band karna",
+"Sirf websites banana",
+"Sirf games khelna"
+],
+answer:0
+}
+
+];
+
+let currentQuestion=0;
+let score=0;
+
+
+function startQuiz(){
+
+hideAll();
+
+document.getElementById("quizPage").style.display="block";
+
+currentQuestion=0;
+score=0;
+
+showQuestion();
+}
+
+
+function showQuestion(){
+
+let q=quizQuestions[currentQuestion];
+
+let html=`
+<p>Question ${currentQuestion+1} / ${quizQuestions.length}</p>
+
+<p class="question">${q.q}</p>
+`;
+
+q.options.forEach((option,i)=>{
+
+html+=`
+<button class="option" onclick="answerQuestion(${i})">
+${option}
+</button>
+`;
+
+});
+
+document.getElementById("quiz").innerHTML=html;
+}
+
+
+function answerQuestion(choice){
+
+let correct=quizQuestions[currentQuestion].answer;
+
+if(choice===correct){
+score++;
+alert("✅ Correct!");
+}else{
+alert("❌ Wrong answer!");
+}
+
+currentQuestion++;
+
+if(currentQuestion<quizQuestions.length){
+
+showQuestion();
+
+}else{
+
+let percentage=Math.round(
+(score/quizQuestions.length)*100
+);
+
+progress=Math.min(progress+percentage/10,100);
+
+localStorage.setItem("progress",progress);
+
+document.getElementById("quiz").innerHTML=
+"<h3>🎉 Quiz Complete!</h3>";
+
+document.getElementById("result").textContent=
+"Your Score: "+score+"/"+quizQuestions.length+
+" ("+percentage+"%)";
+
+updateProgress();
+}
+
+}
+
+
+function showNotes(){
+
+hideAll();
+
+document.getElementById("notesPage").style.display="block";
+}
+
+
+function showProgress(){
+
+hideAll();
+
+document.getElementById("progressPage").style.display="block";
+
+updateProgress();
+}
+
+
+function updateProgress(){
+
+let fill=document.getElementById("progressFill");
+
+if(fill){
+fill.style.width=progress+"%";
+}
+
+let text=document.getElementById("progressText");
+
+if(text){
+text.textContent=
+Math.round(progress)+"% learning progress completed.";
+}
+
+}
+
+
+function hideAll(){
+
+document.getElementById("dashboard").style.display="none";
+document.getElementById("learning").style.display="none";
+document.getElementById("quizPage").style.display="none";
+document.getElementById("notesPage").style.display="none";
+
+let p=document.getElementById("progressPage");
+
+if(p)p.style.display="none";
+}
+
+
+function goHome(){
+
+hideAll();
+
+document.getElementById("dashboard").style.display="block";
+}
+
+
+window.onload=function(){
+
+loadStudent();
+
+};
+
+</script>
+
+</body>
+                                     </html>
